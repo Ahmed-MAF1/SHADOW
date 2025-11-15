@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="card_overlay">#B3001E2B</color>
+    <color name="background_dark">#0F1220</color>
+    <color name="accent">#8E54E9</color>
+    <color name="accent2">#4CA0FF</color>
+    <color name="btn_selected_text">#FF000000</color>
+    <color name="coc321">#504073</color>
+</resources>
+
