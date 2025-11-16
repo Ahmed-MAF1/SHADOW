@@ -26,10 +26,6 @@
     <string name="inventory">Inventory</string>
     <string name="settings">Settings</string>
     <string name="status">Status</string>
-    <!--  Co-op -->
-    <string name="enter_invite_code">Enter Invite Code</string>
-    <string name="your_invite_code">Your Code</string>
-    <string name="generate_code">Generate Code</string>
     <!-- Profile  -->
     <string name="your_name">Name</string>
     <string name="your_hobbies">Hobbies</string>
@@ -38,14 +34,6 @@
     <string name="time_gym">Time in Gym</string>
     <string name="time_study">Time in Study</string>
     <string name="time_bedroom">Time in Bedroom</string>
-    <!-- Messages -->
-    <string name="error_invalid_login">Invalid username or password</string>
-    <string name="success_login">Login successful</string>
-    <!-- Buttons -->
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
-    <!-- General -->
-    <string name="loading">Loading...</string>
-    <string name="no_data">No Data Available</string>
+
+
 </resources>

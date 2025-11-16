@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark">
-     <!-- Basic background -->
+
+    <!-- Basic background -->
     <ImageView
         android:id="@+id/bgImage"
         android:layout_width="0dp"
@@ -33,25 +34,36 @@
         android:gravity="center_vertical">
 
         <!-- Profile -->
-        <ImageView
-            android:id="@+id/imgProfile"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:src="@drawable/profile_pic"
-            android:contentDescription="@string/profile"
-            android:scaleType="centerCrop"
-            android:background="@drawable/profile_circle_bg"/>
-
-        <!--username-->
-        <TextView
-            android:id="@+id/tvUsername"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="MAFGHOST"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@drawable/background_main_bar_bg"
+            android:layout_marginStart="12dp">
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/profile_pic"
+                android:contentDescription="@string/profile"
+                android:scaleType="centerCrop"
+                android:background="@drawable/profile_circle_bg"
+                android:clipToOutline="true" />
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="MAFGHOST"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
 
         <Space android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
         <!-- coins area-->
@@ -59,7 +71,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@drawable/background_main_bar_bg">
 
             <ImageView
                 android:id="@+id/icCoins"
@@ -67,7 +81,7 @@
                 android:layout_height="28dp"
                 android:src="@drawable/ic_coins"
                 android:contentDescription="@string/coins"
-                app:tint="@color/white"/>
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/tvCoins"
@@ -76,11 +90,12 @@
                 android:text="100"
                 android:layout_marginStart="6dp"
                 android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </LinearLayout>
+
     </LinearLayout>
 
-    <!-- Central card showing current room image -->
+    <!-- Central card showing image main -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardRoom"
         android:layout_width="0dp"
@@ -98,25 +113,26 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+            <!-- The main image-->
             <ImageView
                 android:id="@+id/imgRoomBg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:contentDescription="@string/current_room_bg"
-                android:src="@drawable/bg_gym"/>
+                android:src="@drawable/bg_gym" />
 
-            <!-- زر تغيير الغرفة السريع على اليمين -->
-            <Button
+            <!-- ic change-->
+            <ImageButton
                 android:id="@+id/btnChangeRoom"
-                android:layout_width="96dp"
-                android:layout_height="44dp"
-                android:text="@string/change_room"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center|end"
                 android:layout_marginEnd="12dp"
-                android:background="@drawable/button_round_outline"
-                android:textColor="@color/white"/>
+                android:src="@drawable/ic_change"
+                android:background="@drawable/background_bottom_icon_bg"
+                android:contentDescription="@string/change_room"
+                android:padding="12dp" />
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 
@@ -139,8 +155,9 @@
             android:id="@+id/btnShop"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/bg_shop"
+            android:src="@drawable/ic_shop1"
             android:background="@drawable/background_bottom_icon_bg"
+            app:tint="@color/white"
             android:contentDescription="@string/shop"/>
 
         <!-- icon co_op-->
@@ -148,7 +165,7 @@
             android:id="@+id/btnInvite"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/bg_co_op"
+            android:src="@drawable/ic_co_op1"
             android:layout_marginStart="12dp"
             android:background="@drawable/background_bottom_icon_bg"
             android:contentDescription="@string/invite"/>
@@ -158,19 +175,21 @@
             android:id="@+id/btnHomeStatus"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/ic_home"
+            android:src="@drawable/ic_home1"
             android:background="@drawable/background_bottom_icon_bg"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             app:tint="@color/white"
             android:contentDescription="@string/home"/>
 
+
+
         <!-- icon Forms-->
         <ImageButton
             android:id="@+id/btnInventory"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/bg_forms"
+            android:src="@drawable/ic_forms1"
             android:background="@drawable/background_bottom_icon_bg"
             android:contentDescription="@string/inventory"/>
 
@@ -179,7 +198,7 @@
             android:id="@+id/btnSettings"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/bg_settings"
+            android:src="@drawable/ic_settings1"
             android:layout_marginStart="12dp"
             android:background="@drawable/background_bottom_icon_bg"
             android:contentDescription="@string/settings"/>
