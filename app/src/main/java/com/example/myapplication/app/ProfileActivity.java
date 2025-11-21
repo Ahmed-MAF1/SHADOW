@@ -1,10 +1,10 @@
-package com.example.myapplication;
-
+package com.example.myapplication.app;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -15,7 +15,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile); // اصنع layout بسيط بنفس الأسماء
+        setContentView(R.layout.activity_profile);
 
         prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
         tvName = findViewById(R.id.tvName);

@@ -1,18 +1,18 @@
-package com.example.myapplication;
+package com.example.myapplication.app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String ROOM_GYM = "gym";
     private static final String ROOM_STUDY = "study";
     private static final String ROOM_BEDROOM = "bedroom";
+    private static final long COIN_INTERVAL = 120000;
 
     private ImageView imgRoomBg, imgProfile;
     private TextView tvCoins;
@@ -33,13 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton btnShop, btnInvite, btnInventory, btnSettings, btnHomeStatus;
 
-    private long coins = 0L; // أو القيمة اللي تحبها
+    private long coins = 0L;
     private String currentRoom = ROOM_GYM;
     private final Map<String, Long> timeSpent = new HashMap<>();
     private long lastRoomEnterTs = 0L;
 
     private Animation animUp, animDown;
     private SharedPreferences prefs;
+//    private MyGLSurfaceView glView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +52,12 @@ public class MainActivity extends AppCompatActivity {
         bindViews();
         loadState();
 
+
         lastRoomEnterTs = System.currentTimeMillis();
         initAnimations();
         setupListeners();
+//        glView = new MyGLSurfaceView(this);
+//        setContentView(glView);
 
         applyBounceEffect(btnShop);
         applyBounceEffect(btnInvite);
@@ -60,7 +65,11 @@ public class MainActivity extends AppCompatActivity {
         applyBounceEffect(btnSettings);
         applyBounceEffect(btnHomeStatus);
         applyBounceEffect(btnChangeRoom);
+
+       tvCoins.setText(String.valueOf(coins));
+
     }
+//    <id>
 
     private void bindViews() {
         imgRoomBg = findViewById(R.id.imgRoomBg);
@@ -75,15 +84,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadState() {
-        coins = prefs.getLong(KEY_COINS, coins);
+        coins = prefs.getLong(KEY_COINS, 0L);
         currentRoom = prefs.getString(KEY_CURRENT, currentRoom);
-        tvCoins.setText(String.valueOf(coins));
+
 
         timeSpent.put(ROOM_GYM, prefs.getLong("time_" + ROOM_GYM, 0L));
         timeSpent.put(ROOM_STUDY, prefs.getLong("time_" + ROOM_STUDY, 0L));
         timeSpent.put(ROOM_BEDROOM, prefs.getLong("time_" + ROOM_BEDROOM, 0L));
 
         updateRoomBackground(currentRoom);
+        tvCoins.setText(String.valueOf(coins));
     }
 
     private void initAnimations() {
@@ -98,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
         btnInvite.setOnClickListener(v -> startActivity(new Intent(this, InviteActivity.class)));
         btnInventory.setOnClickListener(v -> startActivity(new Intent(this, InventoryActivity.class)));
         btnSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
-        btnHomeStatus.setOnClickListener(v -> openStatusPage());
+        btnHomeStatus.setOnClickListener(v -> {});
 
         tvCoins.setOnLongClickListener(v -> {
             addCoins(10);
-            return true;
+           return true;
         });
     }
 
@@ -121,11 +131,11 @@ public class MainActivity extends AppCompatActivity {
         long now = System.currentTimeMillis();
         long delta = now - lastRoomEnterTs;
         timeSpent.put(currentRoom, timeSpent.getOrDefault(currentRoom, 0L) + delta);
-
         currentRoom = room;
         lastRoomEnterTs = now;
         updateRoomBackground(room);
         prefs.edit().putString(KEY_CURRENT, currentRoom).apply();
+
     }
 
     private void updateRoomBackground(String room) {
@@ -151,18 +161,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openStatusPage() {
-        Intent i = new Intent(this, RoomStatusActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         i.putExtra("room", currentRoom);
         startActivity(i);
     }
 
+    private void convertTimeToCoins(){
+        long totalTime=timeSpent.getOrDefault(currentRoom, 0L);
+        long earnedCoins=totalTime/COIN_INTERVAL;
+        if (earnedCoins>0) {
+            addCoins(earnedCoins);
+            long remainingTime = totalTime%COIN_INTERVAL;
+
+        }
+
+    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        glView.onResume();
+//    }
+
     @Override
     protected void onPause() {
         super.onPause();
+//        glView.onPause();
         long now = System.currentTimeMillis();
         long delta = now - lastRoomEnterTs;
         timeSpent.put(currentRoom, timeSpent.getOrDefault(currentRoom, 0L) + delta);
         lastRoomEnterTs = now;
+
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putLong(KEY_COINS, coins);

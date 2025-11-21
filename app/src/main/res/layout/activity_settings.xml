@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -9,8 +10,73 @@
         android:id="@+id/tvSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings "
+        android:text="Settings"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:layout_gravity="center"/>
-</FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- main bar -->
+    <!-- Background of the main bar-->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp"
+        android:layout_height="88dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@drawable/background_main_bar_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <!-- icon shop -->
+        <ImageButton
+            android:id="@+id/btnShop"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_shop1"
+            android:background="@drawable/background_bottom_icon_bg"
+            app:tint="@color/white"
+            android:contentDescription="@string/shop" />
+        <!-- icon co_op-->
+        <ImageButton
+            android:id="@+id/btnInvite"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_co_op1"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_bottom_icon_bg"
+            android:contentDescription="@string/invite" />
+        <!-- icon home -->
+        <ImageButton
+            android:id="@+id/btnHomeStatus"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_home1"
+            android:background="@drawable/background_bottom_icon_bg"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            app:tint="@color/white"
+            android:contentDescription="@string/home" />
+        <!-- icon Forms-->
+        <ImageButton
+            android:id="@+id/btnInventory"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_forms1"
+            android:background="@drawable/background_bottom_icon_bg"
+            android:contentDescription="@string/inventory" />
+        <!-- icon settings-->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_settings1"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_bottom_icon_bg"
+            android:contentDescription="@string/settings" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

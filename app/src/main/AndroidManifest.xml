@@ -10,31 +10,30 @@
 
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".app.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShopActivity" />
-        <activity android:name=".InviteActivity" />
-        <activity android:name=".InventoryActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".RoomStatusActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".app.ShopActivity" />
+        <activity android:name=".app.InviteActivity" />
+        <activity android:name=".app.InventoryActivity" />
+        <activity android:name=".app.SettingsActivity" />
+        <activity android:name=".app.ProfileActivity" />
 
 
 
 
 
         <activity
-            android:name=".MainActivity"
+            android:name=".app.MainActivity"
             android:exported="false" >
         </activity>
 
 
-        <activity android:name=".CreateAccountActivity" android:exported="false"/>
+        <activity android:name=".app.CreateAccountActivity" android:exported="false"/>
 
     </application>
 </manifest>
