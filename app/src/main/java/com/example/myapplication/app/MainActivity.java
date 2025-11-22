@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
     private static final String ROOM_GYM = "gym";
     private static final String ROOM_STUDY = "study";
     private static final String ROOM_BEDROOM = "bedroom";
+    private static final String ROOM_BACKGROUND = "base";
+
     private static final long COIN_INTERVAL = 120000;
 
-    private ImageView imgRoomBg, imgProfile;
-    private TextView tvCoins;
-    private ImageButton btnChangeRoom;
+    private ImageView bgImage,imgRoomBg,imgProfile;
 
-    private ImageButton btnShop, btnInvite, btnInventory, btnSettings, btnHomeStatus;
+    private TextView tvCoins;
+
+    private ImageButton btnShop, btnInvite, btnInventory, btnSettings, btnHomeStatus,btnChangeRoom; //page switching
 
     private long coins = 0L;
     private String currentRoom = ROOM_GYM;
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Animation animUp, animDown;
     private SharedPreferences prefs;
-//    private MyGLSurfaceView glView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +53,9 @@ public class MainActivity extends AppCompatActivity {
         bindViews();
         loadState();
 
-
         lastRoomEnterTs = System.currentTimeMillis();
         initAnimations();
         setupListeners();
-//        glView = new MyGLSurfaceView(this);
-//        setContentView(glView);
 
         applyBounceEffect(btnShop);
         applyBounceEffect(btnInvite);
@@ -66,12 +64,11 @@ public class MainActivity extends AppCompatActivity {
         applyBounceEffect(btnHomeStatus);
         applyBounceEffect(btnChangeRoom);
 
-       tvCoins.setText(String.valueOf(coins));
-
+        tvCoins.setText(String.valueOf(coins));
     }
-//    <id>
 
     private void bindViews() {
+        bgImage = findViewById(R.id.bgImage);
         imgRoomBg = findViewById(R.id.imgRoomBg);
         imgProfile = findViewById(R.id.imgProfile);
         tvCoins = findViewById(R.id.tvCoins);
@@ -87,12 +84,13 @@ public class MainActivity extends AppCompatActivity {
         coins = prefs.getLong(KEY_COINS, 0L);
         currentRoom = prefs.getString(KEY_CURRENT, currentRoom);
 
-
         timeSpent.put(ROOM_GYM, prefs.getLong("time_" + ROOM_GYM, 0L));
         timeSpent.put(ROOM_STUDY, prefs.getLong("time_" + ROOM_STUDY, 0L));
         timeSpent.put(ROOM_BEDROOM, prefs.getLong("time_" + ROOM_BEDROOM, 0L));
 
+        updateBaseBackground();
         updateRoomBackground(currentRoom);
+
         tvCoins.setText(String.valueOf(coins));
     }
 
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvCoins.setOnLongClickListener(v -> {
             addCoins(10);
-           return true;
+            return true;
         });
     }
 
@@ -131,17 +129,52 @@ public class MainActivity extends AppCompatActivity {
         long now = System.currentTimeMillis();
         long delta = now - lastRoomEnterTs;
         timeSpent.put(currentRoom, timeSpent.getOrDefault(currentRoom, 0L) + delta);
+        convertTimeToCoins();
         currentRoom = room;
         lastRoomEnterTs = now;
         updateRoomBackground(room);
         prefs.edit().putString(KEY_CURRENT, currentRoom).apply();
+    }
 
+    private void updateBaseBackground() {
+        String key = "current_bg_" + ROOM_BACKGROUND;
+        String bgId = prefs.getString(key, null);
+
+        int resId;
+        if (bgId != null) {
+            resId = getResources().getIdentifier(bgId, "drawable", getPackageName());
+            if (resId == 0) {
+                resId = R.drawable.bg_background;
+            }
+        } else {
+            resId = R.drawable.bg_background;
+        }
+
+        bgImage.setImageResource(resId);
     }
 
     private void updateRoomBackground(String room) {
-        if (ROOM_GYM.equals(room)) imgRoomBg.setImageResource(R.drawable.bg_gym);
-        else if (ROOM_STUDY.equals(room)) imgRoomBg.setImageResource(R.drawable.bg_study);
-        else imgRoomBg.setImageResource(R.drawable.bg_bedroom);
+        String key = "current_bg_" + room;
+        String bgId = prefs.getString(key, null);
+
+        int resId;
+        if (bgId != null) {
+            resId = getResources().getIdentifier(bgId, "drawable", getPackageName());
+            if (resId == 0) {
+                resId = getDefaultRoomBg(room);
+            }
+        } else {
+            resId = getDefaultRoomBg(room);
+        }
+
+        imgRoomBg.setImageResource(resId);
+    }
+
+    private int getDefaultRoomBg(String room) {
+        if (ROOM_GYM.equals(room)) return R.drawable.bg_gym;
+        else if (ROOM_STUDY.equals(room)) return R.drawable.bg_study;
+        else if (ROOM_BEDROOM.equals(room)) return R.drawable.bg_bedroom;
+        else return R.drawable.bg_gym;
     }
 
     private void cycleRooms() {
@@ -167,30 +200,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void convertTimeToCoins(){
-        long totalTime=timeSpent.getOrDefault(currentRoom, 0L);
-        long earnedCoins=totalTime/COIN_INTERVAL;
-        if (earnedCoins>0) {
+        long totalTime = timeSpent.getOrDefault(currentRoom, 0L);
+        long earnedCoins = totalTime / COIN_INTERVAL;
+        if (earnedCoins > 0) {
             addCoins(earnedCoins);
-            long remainingTime = totalTime%COIN_INTERVAL;
-
+            long remainingTime = totalTime % COIN_INTERVAL;
         }
-
     }
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        glView.onResume();
-//    }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        glView.onPause();
+
         long now = System.currentTimeMillis();
         long delta = now - lastRoomEnterTs;
         timeSpent.put(currentRoom, timeSpent.getOrDefault(currentRoom, 0L) + delta);
         lastRoomEnterTs = now;
-
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putLong(KEY_COINS, coins);

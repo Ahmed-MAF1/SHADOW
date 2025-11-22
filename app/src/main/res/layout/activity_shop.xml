@@ -6,19 +6,167 @@
     android:padding="16dp"
     android:background="@color/background_dark">
 
+    <!-- Screen title -->
     <TextView
         android:id="@+id/tvShop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shop"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+    <!-- ScrollView for all shop sections -->
+    <ScrollView
+        android:id="@+id/scrollShop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvShop"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <!-- main bar -->
-    <!-- Background of the main bar-->
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/shopContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <!-- BASE SECTION -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/background_section"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Base Backgrounds"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:overScrollMode="never">
+
+                    <LinearLayout
+                        android:id="@+id/rowBackground"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- GYM SECTION -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/background_section"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gym Backgrounds"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:overScrollMode="never">
+
+                    <LinearLayout
+                        android:id="@+id/rowGym"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- STUDY SECTION -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/background_section"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Study Backgrounds"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:overScrollMode="never">
+
+                    <LinearLayout
+                        android:id="@+id/rowStudy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- BEDROOM SECTION -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/background_section"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bedroom Backgrounds"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:overScrollMode="never">
+
+                    <LinearLayout
+                        android:id="@+id/rowBedroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
@@ -27,10 +175,11 @@
         android:gravity="center"
         android:padding="8dp"
         android:background="@drawable/background_main_bar_bg"
+        android:elevation="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
-        <!-- icon shop -->
+
         <ImageButton
             android:id="@+id/btnShop"
             android:layout_width="56dp"
@@ -39,7 +188,7 @@
             android:background="@drawable/background_bottom_icon_bg"
             app:tint="@color/white"
             android:contentDescription="@string/shop" />
-        <!-- icon co_op-->
+
         <ImageButton
             android:id="@+id/btnInvite"
             android:layout_width="56dp"
@@ -48,7 +197,7 @@
             android:layout_marginStart="12dp"
             android:background="@drawable/background_bottom_icon_bg"
             android:contentDescription="@string/invite" />
-        <!-- icon home -->
+
         <ImageButton
             android:id="@+id/btnHomeStatus"
             android:layout_width="70dp"
@@ -59,7 +208,7 @@
             android:layout_marginEnd="12dp"
             app:tint="@color/white"
             android:contentDescription="@string/home" />
-        <!-- icon Forms-->
+
         <ImageButton
             android:id="@+id/btnInventory"
             android:layout_width="56dp"
@@ -67,7 +216,7 @@
             android:src="@drawable/ic_forms1"
             android:background="@drawable/background_bottom_icon_bg"
             android:contentDescription="@string/inventory" />
-        <!-- icon settings-->
+
         <ImageButton
             android:id="@+id/btnSettings"
             android:layout_width="56dp"
@@ -80,4 +229,3 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
