@@ -6,34 +6,36 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.MyApplication">
 
 
         <activity
-            android:name=".app.LoginActivity"
+            android:name=".app.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.ShopActivity" />
-        <activity android:name=".app.InviteActivity" />
-        <activity android:name=".app.InventoryActivity" />
-        <activity android:name=".app.SettingsActivity" />
-        <activity android:name=".app.ProfileActivity" />
+        <activity android:name=".app.shop.ShopActivity" />
+        <activity android:name=".app.shop.InviteActivity" />
+        <activity android:name=".app.coop.InventoryActivity" />
+        <activity android:name=".app.profile.SettingsActivity" />
+        <activity android:name=".app.profile.ProfileActivity" />
 
 
 
 
 
         <activity
-            android:name=".app.MainActivity"
+            android:name=".app.home.MainActivity"
             android:exported="false" >
         </activity>
 
 
-        <activity android:name=".app.CreateAccountActivity" android:exported="false"/>
+        <activity android:name=".app.auth.CreateAccountActivity" android:exported="false"/>
 
     </application>
 </manifest>

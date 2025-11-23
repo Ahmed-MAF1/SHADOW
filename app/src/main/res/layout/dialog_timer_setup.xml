@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="24dp"
+    app:cardBackgroundColor="#1E2129"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Focus Session"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select duration (minutes)"
+            android:textColor="#BFCAD6"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:alignmentMode="alignMargins">
+
+            <Button
+
+                android:id="@+id/btnTime10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:text="10 m"
+                app:backgroundTint="@color/accent_green"
+                android:backgroundTint="#2B2F3A"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/btnTime25"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:text="25 m"
+                android:backgroundTint="#2B2F3A"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/btnTime45"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:text="45 m"
+                android:backgroundTint="#2B2F3A"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/btnTime60"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:text="60 m"
+                android:backgroundTint="#2B2F3A"
+                android:textColor="@color/white"/>
+        </GridLayout>
+
+        <Button
+            android:id="@+id/btnStartCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Now"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollProfile"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
@@ -9,171 +9,272 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:orientation="vertical">
 
-        <!-- Profile header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Statistics"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imgProfileSmall"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/profile_pic"
+                android:scaleType="centerCrop"
+                android:background="@drawable/profile_circle_bg"
+                android:clipToOutline="true"/>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="8dp">
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/background_section"
+            android:padding="4dp">
 
-            <ImageView
-                android:id="@+id/imgProfileLarge"
-                android:layout_width="88dp"
-                android:layout_height="88dp"
-                android:src="@drawable/profile_pic"
-                android:contentDescription="@string/profile"
-                android:scaleType="centerCrop"
-                android:background="@drawable/profile_circle_bg"/>
-
-            <LinearLayout
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTabToday"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:text="Today"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/accent_green"
+                app:cornerRadius="8dp"
+                android:textStyle="bold"
+                android:insetTop="0dp" android:insetBottom="0dp"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
 
-                <TextView
-                    android:id="@+id/tvName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/your_name"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTabWeek"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Week"
+                android:textColor="#BFCAD6"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="8dp"
+                android:insetTop="0dp" android:insetBottom="0dp"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
 
-                <TextView
-                    android:id="@+id/tvBags"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/your_bags"
-                    android:textColor="#BFCAD6"
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTabMonth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Month"
+                android:textColor="#BFCAD6"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="8dp"
+                android:insetTop="0dp" android:insetBottom="0dp"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
         </LinearLayout>
 
-        <!-- Hobbies -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/your_hobbies"
-            android:textColor="#BFCAD6"
-            android:textSize="13sp"
-            android:layout_marginTop="12dp"/>
-
-        <TextView
-            android:id="@+id/tvHobbies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Reading, Coding, Gym"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_marginTop="6dp"/>
-
-        <!-- Separator -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="#2B2F3A"/>
-
-        <!-- Weekly Stats header -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/weekly_stats"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
-
-        <!-- Time spent rows -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="12dp">
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/tvTotalTimeBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0h 0m"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Focus Time"
+                android:textColor="#BFCAD6"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:gravity="center_vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/time_gym"
-                    android:textColor="#BFCAD6"
-                    android:textSize="14sp"/>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:id="@+id/tvGymTimeSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0m" android:textColor="@color/white" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gym" android:textColor="#BFCAD6" android:textSize="12sp"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:id="@+id/tvStudyTimeSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0m" android:textColor="@color/white" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Study" android:textColor="#BFCAD6" android:textSize="12sp"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:id="@+id/tvBedroomTimeSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0m" android:textColor="@color/white" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bedroom" android:textColor="#BFCAD6" android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvTimeGym"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 min"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last 7 Days"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:background="@drawable/background_section"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center">
+                <View android:id="@+id/bar1" android:layout_width="12dp" android:layout_height="0dp" android:layout_weight="0.1" android:background="#2B2F3A" android:backgroundTint="#673AB7"/>
+                <TextView android:id="@+id/lbl1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="S" android:textColor="#777" android:textSize="10sp" android:layout_marginTop="4dp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/time_study"
-                    android:textColor="#BFCAD6"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:id="@+id/tvTimeStudy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 min"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center">
+                <View android:id="@+id/bar2" android:layout_width="12dp" android:layout_height="0dp" android:layout_weight="0.2" android:background="#2B2F3A" android:backgroundTint="#673AB7"/>
+                <TextView android:id="@+id/lbl2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="M" android:textColor="#777" android:textSize="10sp" android:layout_marginTop="4dp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:gravity="center_vertical">
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center">
+                <View android:id="@+id/bar3" android:layout_width="12dp" android:layout_height="0dp" android:layout_weight="0.4" android:background="#2B2F3A" android:backgroundTint="#673AB7"/>
+                <TextView android:id="@+id/lbl3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="T" android:textColor="#777" android:textSize="10sp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/time_bedroom"
-                    android:textColor="#BFCAD6"
-                    android:textSize="14sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center">
+                <View android:id="@+id/bar4" android:layout_width="12dp" android:layout_height="0dp" android:layout_weight="0.3" android:background="#2B2F3A" android:backgroundTint="#673AB7"/>
+                <TextView android:id="@+id/lbl4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="W" android:textColor="#777" android:textSize="10sp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvTimeBedroom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 min"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center">
+                <View android:id="@+id/bar5" android:layout_width="12dp" android:layout_height="0dp" android:layout_weight="0.5" android:background="#2B2F3A" android:backgroundTint="#673AB7"/>
+                <TextView android:id="@+id/lbl5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="T" android:textColor="#777" android:textSize="10sp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center">
+                <View android:id="@+id/bar6" android:layout_width="12dp" android:layout_height="0dp" android:layout_weight="0.8" android:background="#2B2F3A" android:backgroundTint="#673AB7"/>
+                <TextView android:id="@+id/lbl6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="F" android:textColor="#777" android:textSize="10sp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center">
+                <View android:id="@+id/bar7" android:layout_width="12dp" android:layout_height="0dp" android:layout_weight="0.6" android:background="#2B2F3A" android:backgroundTint="#4CAF50"/>
+                <TextView android:id="@+id/lbl7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Today" android:textColor="#fff" android:textSize="10sp" android:layout_marginTop="4dp"/>
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- spacer -->
-        <View android:layout_width="match_parent" android:layout_height="24dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activities"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/card_overlay"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            android:layout_marginBottom="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="12dp">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_forms1" app:tint="#F44336" android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Gym" android:textColor="@color/white" android:textSize="16sp" android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvGymTimeCard" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0h 0m" android:textColor="@color/white"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="bottom" android:layout_marginTop="8dp">
+                    <View android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:background="#F44336" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="40dp" android:layout_weight="1" android:background="#F44336" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="10dp" android:layout_weight="1" android:background="#F44336" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="50dp" android:layout_weight="1" android:background="#F44336" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="30dp" android:layout_weight="1" android:background="#F44336" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="15dp" android:layout_weight="1" android:background="#F44336" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="45dp" android:layout_weight="1" android:background="#F44336" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="25dp" android:layout_weight="1" android:background="#F44336"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/card_overlay"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            android:layout_marginBottom="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="12dp">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_forms1" app:tint="#FFEB3B" android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Study" android:textColor="@color/white" android:textSize="16sp" android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvStudyTimeCard" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0h 0m" android:textColor="@color/white"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="bottom" android:layout_marginTop="8dp">
+                    <View android:layout_width="0dp" android:layout_height="35dp" android:layout_weight="1" android:background="#FFEB3B" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:background="#FFEB3B" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="55dp" android:layout_weight="1" android:background="#FFEB3B" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="10dp" android:layout_weight="1" android:background="#FFEB3B" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="40dp" android:layout_weight="1" android:background="#FFEB3B" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="25dp" android:layout_weight="1" android:background="#FFEB3B" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="15dp" android:layout_weight="1" android:background="#FFEB3B" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="45dp" android:layout_weight="1" android:background="#FFEB3B"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/card_overlay"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            android:layout_marginBottom="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="12dp">
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_forms1" app:tint="#2196F3" android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Bedroom" android:textColor="@color/white" android:textSize="16sp" android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvBedroomTimeCard" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0h 0m" android:textColor="@color/white"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:orientation="horizontal" android:gravity="bottom" android:layout_marginTop="8dp">
+                    <View android:layout_width="0dp" android:layout_height="10dp" android:layout_weight="1" android:background="#2196F3" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="30dp" android:layout_weight="1" android:background="#2196F3" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:background="#2196F3" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="50dp" android:layout_weight="1" android:background="#2196F3" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="15dp" android:layout_weight="1" android:background="#2196F3" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="40dp" android:layout_weight="1" android:background="#2196F3" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="25dp" android:layout_weight="1" android:background="#2196F3" android:layout_marginEnd="4dp"/>
+                    <View android:layout_width="0dp" android:layout_height="35dp" android:layout_weight="1" android:background="#2196F3"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </ScrollView>

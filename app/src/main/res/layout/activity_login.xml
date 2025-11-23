@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
-    tools:context=".app.LoginActivity">
+    tools:context=".app.auth.LoginActivity">
 
     <!--image background-->
     <ImageView
@@ -99,7 +99,7 @@
                     android:id="@+id/etUsername"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:hint="@string/username"
+                    android:hint="@string/gmail"
                     android:paddingStart="12dp"
                     android:paddingEnd="16dp"
                     android:textColor="@android:color/white"

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="24dp"
+    app:cardBackgroundColor="#1E2129"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvControlTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Session Active"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btnPauseResume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pause ⏸️"
+            android:backgroundTint="#FF9800"
+            android:textColor="@color/white"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnGiveUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Give Up (No Coins)"
+            android:backgroundTint="#F44336"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/tvDismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Close Menu"
+            android:textColor="#BFCAD6"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

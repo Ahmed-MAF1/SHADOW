@@ -3,5 +3,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="card_overlay">#B3001E2B</color>
     <color name="background_dark">#0F1220</color>
+    <color name="accent_green">#4CAF50</color>
+    <color name="black">#000000</color>
 </resources>
 
